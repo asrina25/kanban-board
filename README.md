@@ -29,7 +29,7 @@ and all tasks (including their positions) are saved using **localStorage**, so t
 
 ## Author
 
-* **Your Name** – [asrina25](https://github.com/<asrina25>)
+* **Your Name** – [asrina begam](https://github.com/<asrina_begam>)
 
 ```
 
