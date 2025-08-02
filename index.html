@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Drag and drop API</title>
+    <link rel="stylesheet" href="style.css">
+  
+   
+</head>
+<body>
+    <div class="board">
+        <!--input ToDo-->
+        <form id="todo-form">
+            <input placeholder="Add todo...." id="todo-input">
+            <button type="submit" id="add">Add +</button>
+        </form>
+        <!--lanes-->
+        <div class="lanes">
+            <!--to do column-->
+            <div class="swim-lane" id="todo-lane">
+                <h3 class="heading">TO DO</h3>
+              
+            </div>
+            <!--doing column-->
+            <div class="swim-lane" id="doing-lane">
+                <h3 class="heading">IN PROCESS</h3>
+              
+            </div>
+            <!--done column-->
+            <div class="swim-lane" id="done-lane">
+                <h3 class="heading">DONE</h3> 
+            </div>
+        </div>
+
+    </div>
+     <script src="drag.js"></script>
+       <script src="todo.js"></script>
+</body>
+</html>

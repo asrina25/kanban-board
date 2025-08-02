@@ -1,0 +1,93 @@
+/* ----RESET/BASIC STYLING---- */
+*{
+    padding: 0;
+    margin: 0;
+}
+
+
+.board{
+    width: 100%;
+    height: 100vh;
+    overflow: scroll;
+    background-image: url(./images/sagar-kulkarni-AqBs2LubTA0-unsplash.jpg);
+    background-position: center;
+    background-size: cover;
+   
+
+}
+/* todo input */
+#todo-form{
+    display: flex;
+    justify-content: center;
+    padding: 32px 32px 0;
+}
+#todo-form input{
+    padding: 12px;
+    margin-right: 12px;
+    width: 65%;
+    border-radius: 4px;
+    border: none;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.25);
+    background-color: white;
+    font-size: 14px;
+    outline:none ;
+}
+#todo-form button{
+        padding: 12px 32px;
+    font-weight: bold;
+    color: black;
+    border-radius: 4px;
+    border: none;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.25);
+    background-color: rgb(85, 157, 193);
+    font-size: 14px;
+    outline: none;
+    cursor: pointer;
+
+}
+/* lanes */
+.lanes{
+    display: flex;
+    align-items: start;
+    justify-content: center;
+    gap: 16px;
+   flex-wrap: wrap;
+    padding: 24px 34px;
+    height: 100%;
+}
+.heading{
+    font-weight: bold;
+    font-size: 22px;
+    margin-bottom: 8px;
+}
+.swim-lane{
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    background-color: rgb(174, 233, 249);
+    border-radius: 4px;
+       box-shadow: 0 5px 15px rgba(0,0,0,0.15);
+     width: 225px;
+     padding: 12px;
+     min-height: 120px;
+     flex-shrink: 0;
+     
+
+}
+.task{
+    background-color: white;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.25);
+      padding: 12px;
+      border-radius: 4px;
+      font-size: 16px;
+      color: black;
+      cursor:move;
+
+}
+.task.is-dragging{
+    scale: 1.05;
+    background-color: black;
+    color: white;
+     box-shadow: 0 5px 15px rgba(0,0,0,0.25);
+
+}
