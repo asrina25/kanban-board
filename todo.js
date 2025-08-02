@@ -1,3 +1,4 @@
+// Select elements
 const form = document.getElementById("todo-form");
 const input = document.getElementById("todo-input");
 const todoLane = document.getElementById("todo-lane");
@@ -5,7 +6,7 @@ const doingLane = document.getElementById("doing-lane");
 const doneLane = document.getElementById("done-lane");
 const lanes = { todo: todoLane, doing: doingLane, done: doneLane };
 
-// Load tasks on page load
+// Load tasks from localStorage on page load
 window.addEventListener("DOMContentLoaded", () => {
     const storedData = JSON.parse(localStorage.getItem("tasks")) || { todo: [], doing: [], done: [] };
     Object.keys(storedData).forEach(lane => {
@@ -16,7 +17,7 @@ window.addEventListener("DOMContentLoaded", () => {
     });
 });
 
-// Add new task to TO DO by default
+// Add new task to "To Do" lane
 form.addEventListener("submit", (e) => {
     e.preventDefault();
     const value = input.value.trim();
@@ -25,27 +26,45 @@ form.addEventListener("submit", (e) => {
     const task = createTaskElement(value);
     todoLane.appendChild(task);
 
-    saveTasks(); // Save updated state
+    saveTasks();
     input.value = "";
 });
 
-// Create draggable task element
+// Create a draggable task with delete button
 function createTaskElement(text) {
-    const newTask = document.createElement("p");
+    const newTask = document.createElement("div");
     newTask.classList.add("task");
     newTask.setAttribute("draggable", "true");
-    newTask.textContent = text;
 
+    // Task text
+    const taskText = document.createElement("span");
+    taskText.textContent = text;
+
+    // Delete button
+    const deleteBtn = document.createElement("button");
+    deleteBtn.textContent = "X";
+    deleteBtn.classList.add("delete-btn");
+
+    // Delete logic
+    deleteBtn.addEventListener("click", () => {
+        newTask.remove();
+        saveTasks();
+    });
+
+    // Drag events
     newTask.addEventListener("dragstart", () => newTask.classList.add("is-dragging"));
     newTask.addEventListener("dragend", () => {
         newTask.classList.remove("is-dragging");
-        saveTasks(); // Save new order and lane after drop
+        saveTasks();
     });
+
+    newTask.appendChild(taskText);
+    newTask.appendChild(deleteBtn);
 
     return newTask;
 }
 
-// Save all lanes to localStorage
+// Save tasks (with lanes and order) to localStorage
 function saveTasks() {
     const data = {
         todo: getLaneTasks(todoLane),
@@ -55,7 +74,7 @@ function saveTasks() {
     localStorage.setItem("tasks", JSON.stringify(data));
 }
 
-// Helper: Get tasks in a lane
+// Helper: Get only task text (ignore delete button)
 function getLaneTasks(lane) {
-    return [...lane.querySelectorAll(".task")].map(task => task.textContent);
+    return [...lane.querySelectorAll(".task span")].map(span => span.textContent);
 }
